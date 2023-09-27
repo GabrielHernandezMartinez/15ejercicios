@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones en HTML</title>
+</head>
+<body>
+    <h1>Funciones en HTML</h1>
+    <p>Haga clic en un botón para ejecutar la función correspondiente:</p>
+    
+    <button onclick="suma(2, 3)">Suma</button>
+    <button onclick="resta(2, 3)">Resta</button>
+    <button onclick="multiplicacion(2, 3)">Multiplicación</button>
+    <button onclick="div(2, 3)">División</button>
+    <button onclick="residuo(2, 3)">Residuo</button>
+    <button onclick="ejercicio4()">Ejercicio 4</button>
+    <button onclick="divisas()">Divisas</button>
+    <button onclick="perimetro()">Perímetro</button>
+    <button onclick="imc()">IMC</button>
+    <button onclick="bucles()">Bucles</button>
+    <button onclick="estatusSocioeconomicos()">EstatusSocioeconomico</button>
+    <button onclick="formulageneral()">Formula General</button>
+    <button onclick="arreglos()">Arrays</button>
+    <button onclick="frases()">Frases</button>
+    <button onclick="multiplo()">multiplos</button>
+    <button onclick="ultimo()">ultimo</button>
+
+    
+    <div id="resultado"></div>
+    
+    <script>
+        function mostrarResultado(texto) {
+            var resultadoElement = document.createElement('p');
+            resultadoElement.textContent = texto;
+            document.getElementById("resultado").appendChild(resultadoElement);
+        }
+
+        function suma(num1, num2) {
+            var resultado = num1 + num2;
+            mostrarResultado('Suma: ' + resultado);
+        }
+
+        function resta(num1, num2) {
+            var resultado = num1 - num2;
+            mostrarResultado('Resta: ' + resultado);
+        }
+
+        function multiplicacion(num1, num2) {
+            var resultado = num1 * num2;
+            mostrarResultado('Multiplicación: ' + resultado);
+        }
+
+        function div(num1, num2) {
+            var resultado = num1 / num2;
+            mostrarResultado('División: ' + resultado);
+        }
+
+        function residuo(num1, num2) {
+            var resultado = num1 % num2;
+            mostrarResultado('Residuo: ' + resultado);
+        }
+
+        function ejercicio4() {
+            var nombreUsuario = prompt("Ingrese su nombre:");
+            mostrarResultado('Nombre: ' + nombreUsuario);
+            var edadUsuario = prompt("Ingrese su edad:");
+            mostrarResultado('Edad: ' + edadUsuario);
+            var escolaridad = prompt("Ingrese su escolaridad:");
+            mostrarResultado('Escolaridad: ' + escolaridad);
+            var domicilio = prompt("Ingrese su domicilio:");
+            mostrarResultado('Domicilio: ' + domicilio);
+            var telefono = prompt("Ingrese su telefono:");
+            mostrarResultado('Telefono: ' + telefono);
+            var email = prompt("Ingrese su email:");
+            mostrarResultado('Email: ' + email);
+        }
+
+        function divisas() {
+            var euro = parseFloat(prompt("Ingrese la cantidad de euros deseada"));
+            var EUR = parseFloat(euro);
+
+            var tasasDeCambio = {
+                yen: 0.0063,
+                dollarA: 0.94,
+                dollarC: 0.70,
+                Pcolombiano: 0.00024,
+                Pmexicano: 0.055,
+                libra: 1.16,
+                sol: 0.25
+            };
+
+            for (var divisa in tasasDeCambio) {
+                var tasa = tasasDeCambio[divisa];
+                var resultado = EUR / tasa;
+                mostrarResultado('Su cantidad en ' + divisa + ' es de ' + resultado.toFixed(2));
+            }
+        }
+
+        function perimetro() {
+            var altura = parseFloat(prompt("Ingrese el valor de la altura"));
+            var base = parseFloat(prompt("Ingrese el valor de la base"));
+            var resultado = altura * base;
+            mostrarResultado("La base del triángulo es: " + resultado);
+        }
+
+        function imc() {
+            var peso = parseFloat(prompt("Dime tu peso en kilogramos"));
+            var altura = parseFloat(prompt("Dime tu altura en metros"));
+
+            if (isNaN(peso) || isNaN(altura)) {
+                alert("Ingresa valores válidos para peso y altura.");
+                return;
+            }
+
+            var calculoIMC = peso / (altura * altura);
+            var resultadoIMC = "";
+
+            if (calculoIMC <= 18.5) {
+                resultadoIMC = "Estás bajo de peso debido a tu IMC que es de: " + calculoIMC.toFixed(2);
+            } else if (calculoIMC <= 24.9) {
+                resultadoIMC = "Estás en un rango de peso saludable debido a tu IMC que es de: " + calculoIMC.toFixed(2);
+            } else if (calculoIMC <= 29.9) {
+                resultadoIMC = "Estás en sobrepeso debido a tu IMC que es de: " + calculoIMC.toFixed(2);
+            } else {
+                resultadoIMC = "Estás considerado con sobrepeso debido a tu IMC que es de: " + calculoIMC.toFixed(2);
+            }
+
+            mostrarResultado(resultadoIMC);
+        }
+
+        function bucles() {
+            var numeros = [];
+            var numero;
+
+            while (true) {
+                numero = parseFloat(prompt("Ingrese un número (ingrese 0 para finalizar):"));
+
+                if (isNaN(numero)) {
+                    alert("Por favor, ingrese un número válido.");
+                } else if (numero === 0) {
+                    break;
+                } else {
+                    numeros.push(numero);
+                }
+            }
+
+            if (numeros.length > 0) {
+                var sumaImpares = 0;
+                for (var i = 0; i < numeros.length; i++) {
+                    if (numeros[i] % 2 !== 0) {
+                        sumaImpares += numeros[i];
+                    }
+                }
+                mostrarResultado("Números ingresados: " + numeros.join(", "));
+                mostrarResultado("Suma de números impares: " + sumaImpares);
+            } else {
+                mostrarResultado("No se ingresaron números.");
+            }
+        }
+        function estatusSocioeconomicos() {
+    var quincena = prompt("Ingrese su sueldo quincenal");
+    var sueldo = parseFloat(quincena);
+
+    if (isNaN(quincena)) {
+        alert("Ingresa valores válidos para sueldo quincenal.");
+        return;
+    }
+
+    var ingresoMensual = sueldo * 2;
+    var estatus = "";
+
+    if (ingresoMensual >= 50000) {
+        estatus = "Eres considerado clase alta debido a tu ingreso mensual de " + ingresoMensual.toFixed(2);
+    } else if (ingresoMensual >= 15000 && ingresoMensual < 50000) {
+        estatus = "Eres considerado clase media debido a tu ingreso mensual de " + ingresoMensual.toFixed(2);
+    } else if (ingresoMensual >= 5000 && ingresoMensual < 15000) {
+        estatus = "Eres considerado clase baja debido a tu ingreso mensual de " + ingresoMensual.toFixed(2);
+    } else if (ingresoMensual < 5000 && ingresoMensual >= 2500) {
+        estatus = "Eres considerado clase de pobreza debido a tu ingreso mensual de " + ingresoMensual.toFixed(2);
+    } else if (ingresoMensual < 2500) {
+        estatus = "Eres considerado clase de pobreza extrema debido a tu ingreso mensual de " + ingresoMensual.toFixed(2);
+    }
+
+    mostrarResultado(estatus);
+}
+
+function formulageneral() {
+            var numero1 = prompt("Dame el primer valor de la incógnita a");
+            var a = parseFloat(numero1);
+            var numero2 = prompt("Dame el segundo valor de la incógnita b");
+            var b = parseFloat(numero2);
+            var numero3 = prompt("Dame el tercer valor de la incógnita c");
+            var c = parseFloat(numero3);
+
+           
+
+                var estatus = "";
+            
+                var x1 = (-b + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+                var x2 = (-b - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+                estatus="Las soluciones reales son: x1 = " + x1.toFixed(2) + " y x2 = " + x2.toFixed(2);
+            
+            mostrarResultado(estatus);
+        }
+
+        function arreglos(){
+            var nombres = [];
+
+            for (var i = 0; i < 10; i++) {
+                var nombre = prompt("Ingresa el nombre de un amigo:");
+                nombres.push(nombre);
+            }
+            var posicion = parseInt(prompt("Ingresa la posición (entre 1 y 10) para mostrar un nombre:")) - 1; 
+            if (posicion >= 0 && posicion < nombres.length) {
+                var nombreMostrado = nombres[posicion];
+                mostrarResultado("El nombre en la posición " + (posicion + 1) + " es: " + nombreMostrado);
+            } else {
+                mostrarResultado("La posición ingresada no es válida. Debe estar entre 1 y 10.");
+            }
+        }
+
+        function frases(){
+            var frase1 = prompt("Ingrese la primer frase");
+            var f1 = frase1.length;
+            var frase2 = prompt("Ingrese la segunda frase");
+            var f2 = frase2.length;
+
+            if(f1>f2){
+               var dif = f1-f2;
+                mostrarResultado("La frase 1 es mas grande que la frase 2 y tiene una diferencia de"+ dif)
+
+            }else{
+               var dif = f2-f1;
+                mostrarResultado("La frase 2 es mas grande que la frase 1 y tiene una diferencia de"+ dif)
+
+            } 
+        }
+
+        function multiplo(){
+           var continuar= true;
+
+                while (continuar) {
+                 var numero = prompt("Ingrese un número ");
+                     
+                 if(numero%11===0){
+                    continuar= false;
+                 }
+               
+                
+                }
+
+        }
+
+ 
+
+            function ultimo() {
+                const resultados = [];
+
+                while (true) {
+                    
+                    const valor = parseFloat(prompt("Ingrese un valor:"));                    
+                    if (valor < 0) {
+                        break; 
+                    }
+
+                    resultados.push(valor); 
+                }
+
+            
+                if (resultados.length > 0) {
+                    mostrarResultado("Resultados ingresados:");
+                    for (let i = 0; i < resultados.length; i++) {
+                        mostrarResultado(`Valor ${i + 1}: ${resultados[i]}`);
+                    }
+                  
+                    const suma = resultados.reduce((total, valor) => total + valor, 0);
+                    mostrarResultado(`La suma de los valores ingresados es: ${suma}`);
+                } else {
+                    mostrarResultado("No se ingresaron valores o todos los valores fueron negativos.");
+                }
+            }
+
+             
+
+
+    </script>
+</body>
+</html>
